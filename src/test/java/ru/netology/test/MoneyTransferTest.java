@@ -8,8 +8,7 @@ import ru.netology.page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static ru.netology.data.DataHelper.getAuthInfo;
-import static ru.netology.data.DataHelper.getVerificationCodeFor;
+import static ru.netology.data.DataHelper.*;
 import static ru.netology.page.DashboardPage.pushFirstCardButton;
 import static ru.netology.page.DashboardPage.pushSecondCardButton;
 
@@ -33,7 +32,7 @@ public class MoneyTransferTest {
         int amount = 2_761;
 
         val transactionPage = pushSecondCardButton();
-        transactionPage.transferMoneyFromFirstCard(amount);
+        transactionPage.transferMoney(amount, getFirstCardNumber());
         val firstCardBalanceResult = firstCardBalanceStart - amount;
         val secondCardBalanceResult = secondCardBalanceStart + amount;
 
@@ -49,7 +48,7 @@ public class MoneyTransferTest {
         int amount = 928;
 
         val transactionPage = pushFirstCardButton();
-        transactionPage.transferMoneyFromSecondCard(amount);
+        transactionPage.transferMoney(amount, getSecondCardNumber());
         val firstCardBalanceResult = firstCardBalanceStart + amount;
         val secondCardBalanceResult = secondCardBalanceStart - amount;
 

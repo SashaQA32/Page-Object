@@ -14,16 +14,9 @@ public class TransactionPage {
     private SelenideElement fromField = $("[data-test-id=from] input");
     private SelenideElement transferButton = $("[data-test-id=action-transfer]");
 
-    public DashboardPage transferMoneyFromFirstCard(int amount) {
+    public DashboardPage transferMoney(int amount, CardInfo from) {
         amountField.setValue(valueOf(amount));
-        fromField.setValue(valueOf(getFirstCardNumber()));
-        transferButton.click();
-        return new DashboardPage();
-    }
-
-    public DashboardPage transferMoneyFromSecondCard(int amount) {
-        amountField.setValue(valueOf(amount));
-        fromField.setValue(valueOf(getSecondCardNumber()));
+        fromField.setValue(String.valueOf(from));
         transferButton.click();
         return new DashboardPage();
     }
